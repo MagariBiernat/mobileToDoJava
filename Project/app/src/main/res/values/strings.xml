@@ -1,3 +1,24 @@
 <resources>
+
     <string name="app_name">Aplikacja</string>
+
+    <!-- LogIn Panel Strings   -->
+
+    <string name="LogIn_Panel_Please">Please, Log In</string>
+    <string name="Login_Login">Login</string>
+    <string name="Login_Log_in">Log In</string>
+    <string name="Login_Password">Password</string>
+    <string name="Login_Register">No account? Create one !</string>
+
+    <!--  Register Panel   -->
+
+    <string name="Register_Register">Register</string>
+    <string name="Register_GoBack">Cancel</string>
+
+
+    <!--    Navigation menu titles   -->
+
+    <string name="Main_title">Main</string>
+    <string name="Stats_title">Stats</string>
+    <string name="Profile_title">Profile</string>
 </resources>

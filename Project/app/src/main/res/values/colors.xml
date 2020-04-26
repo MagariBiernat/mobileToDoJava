@@ -10,4 +10,5 @@
     <color name="colorPrimary">#1565c0</color>
     <color name="colorPrimaryDark">#003c8f</color>
     <color name="colorAccent">#b71c1c</color>
+    <color name="hintPrimary">#accaed</color>
 </resources>

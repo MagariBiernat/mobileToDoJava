@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation_bottom"
+    app:startDestination="@+id/navigation_main"
+    >
+
+    <fragment
+        android:id="@+id/navigation_main"
+        android:name="com.example.todo.ui.Main_Page.Main.MainFragment"
+        android:label="@string/Main_title"
+        tools:layout="@layout/fragment_main" />
+
+    <fragment
+        android:id="@+id/navigation_stats"
+        android:name="com.example.todo.ui.Main_Page.Stats.StatsFragment"
+        android:label="@string/Stats_title"
+        tools:layout="@layout/fragment_stats" />
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.example.todo.ui.Main_Page.Profile.ProfileFragment"
+        android:label="@string/Profile_title"
+        tools:layout="@layout/fragment_profile" />
+</navigation>
