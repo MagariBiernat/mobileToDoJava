@@ -1,6 +1,5 @@
 package com.example.todo.ui.Main_Page.Stats;
 
-import android.widget.Toast;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -10,12 +9,18 @@ public class StatsViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
+
+
     public StatsViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is stats fragment");
+        mText.setValue("");
     }
+
 
     LiveData<String> getText() {
         return mText;
     }
+
+
+
 }

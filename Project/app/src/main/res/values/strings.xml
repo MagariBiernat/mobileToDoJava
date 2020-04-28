@@ -12,13 +12,13 @@
 
     <!--  Register Panel   -->
 
-    <string name="Register_Register">Register</string>
-    <string name="Register_GoBack">Cancel</string>
-
 
     <!--    Navigation menu titles   -->
 
     <string name="Main_title">Main</string>
     <string name="Stats_title">Stats</string>
     <string name="Profile_title">Profile</string>
+
+    <string name="Settings_title">Settings</string>
+    <string name="LogOut_title">Log Out</string>
 </resources>

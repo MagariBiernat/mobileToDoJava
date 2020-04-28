@@ -9,33 +9,40 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        >
+        android:theme="@style/AppTheme">
 
-        <activity android:name=".ui.MainActivity">
+        <activity
+            android:name=".ui.MainActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
 
-        <activity android:name=".ui.Main_Page.Main_page">
-
-
-        </activity>
-
-        <activity android:name=".ui.register.Register">
-
-        </activity>
-
-        <activity android:name=".YourActivity"
+        <activity
+            android:name=".ui.Main_Page.Main_page"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"></activity>
+        <activity
+            android:name=".ui.register.Register"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"></activity>
+        <activity
+            android:name=".ui.register.RegisterTwo"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"></activity>
+        <activity
+            android:name=".YourActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
-
     </application>
-
 
 </manifest>
