@@ -1,14 +1,25 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
         <!-- Customize your theme here. -->
-        <item name="android:textColor">@color/textPrimary</item>
-        <item name="android:fontFamily">@font/oswaldr</item>
+        <item name="android:background">@color/colorBackground</item>
+<!--        <item name="android:textColor">@color/textPrimary</item>-->
+<!--        <item name="android:fontFamily">@font/oswaldr</item>-->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:background">@color/colorBackground</item>
+<!--        <item name="android:textColorHint">@color/hintPrimary</item>-->
+        <item name="android:windowActivityTransitions">true</item>
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowAllowEnterTransitionOverlap">true</item>
+        <item name="android:windowAllowReturnTransitionOverlap">true</item>
+
+    </style>
+
+    <style name="TextFIeld" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="fontFamily">@font/bangers</item>
+        <item name="android:fontFamily">@font/bangers</item>
     </style>
 
 </resources>

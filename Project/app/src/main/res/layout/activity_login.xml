@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="25dp"
+    >
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:src="@drawable/ic_undraw_note_list_etto_1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textHello"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/bungee"
+                android:textColor="@color/textPrimary"
+                android:text="HELLO THERE,"
+                android:textSize="38dp"/>
+
+            <TextView
+                android:id="@+id/textlogintocontinue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/antic"
+                android:text="Log in to continue"
+                android:textStyle="bold"
+                android:transitionName="logo_subtext"
+                android:textSize="21sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="15dp"
+
+                >
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:transitionName="text_username"
+                    style="@style/TextFIeld"
+                    android:hint="Username"
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:id="@+id/username"
+                        android:inputType="text"
+                        android:singleLine="true"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/oswaldr"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    style="@style/TextFIeld"
+                    android:hint="Password"
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:id="@+id/password"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/oswaldr"
+                        android:imeOptions="actionSend"
+                        android:inputType="textPassword" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <CheckBox
+                    android:id="@+id/checkBoxRemember"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="2dp"
+                    android:text="Remember me"
+                    android:buttonTint="@color/colorPrimary"
+                    android:checked="false"/>
+
+
+                <Button
+                    android:id="@+id/forgetButton"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:background="#00000000"
+                    android:text="Forget password?"
+                    android:layout_gravity="end"
+                    android:textStyle="bold"
+                    android:textSize="17sp"
+                    android:elevation="0dp"
+                    android:textColor="@color/textPrimary"
+                    />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Login_Log_in"
+                    android:layout_marginTop="5dp"
+                    android:textSize="21sp"
+                    android:textStyle="bold"
+                    android:background="@color/colorPrimary"
+                    android:transitionName="button"
+                    android:layout_marginBottom="5dp"
+                    android:textColor="@color/textSecondary"
+                    android:id="@+id/login_loginbutton"
+                    />
+
+                <Button
+                    android:id="@+id/login_signupbutton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#00000000"
+                    android:textSize="17sp"
+                    android:text="NEW HERE? SIGN UP"
+                    android:textColor="@color/textPrimary"
+                    android:elevation="0dp"
+                    />
+
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

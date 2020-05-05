@@ -1,10 +1,16 @@
 package com.example.todo.ui.Main_Page.Main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,6 +19,9 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import com.example.todo.R;
 import com.example.todo.ui.Main_Page.Main_page;
+
+import java.util.ArrayList;
+
 
 public class MainFragment extends Fragment {
 
@@ -23,23 +32,41 @@ public class MainFragment extends Fragment {
         mainViewModel =
                 ViewModelProviders.of(this).get(MainViewModel.class);
         View root = inflater.inflate(R.layout.fragment_main, container, false);
-        final TextView textView = root.findViewById(R.id.text_main);
-        mainViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        ListView myListView = root.findViewById(R.id.tasksList);
+        final Button newTaskButton = root.findViewById(R.id.buttonNewTask);
+
+        newTaskButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
+            public void onClick(View v) {
+                ((Main_page)getActivity()).newTaskAcitivity();
             }
         });
+        
+        final ArrayList<String> myTasks = new ArrayList<String>();
+        
+        myTasks.add("Odkurzyc");
+        myTasks.add("Posprzatac");
+        myTasks.add("Odkurzyc");
+        myTasks.add("Posprzatac");
+        myTasks.add("Odkurzyc");
+        myTasks.add("Posprzatac");
+        myTasks.add("Odkurzyc");
+        myTasks.add("Posprzatac");
+        myTasks.add("Odkurzyc");
+        myTasks.add("Posprzatac");
 
-        Main_page parent = (Main_page) getActivity();
-        assert parent != null;
-        String LoginValue = parent.getLogin();
-
-        final TextView textView1 = root.findViewById(R.id.text_main2);
-        textView1.setText(LoginValue);
-
-
-
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, myTasks);
+        
+        myListView.setAdapter(arrayAdapter);
+        
+        myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getActivity(), myTasks.get(position), Toast.LENGTH_SHORT).show();
+            }
+        });
+        
+        
         return root;
     }
 }

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/buttonNewTaskBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:drawableStart="@drawable/ic_arrow_left"
+                android:drawablePadding="15dp"
+                android:fontFamily="@font/bungee"
+                android:paddingHorizontal="15dp"
+                android:text="BACK"
+                android:textColor="#fff"
+                android:textSize="17sp"
+
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/bungee"
+                android:text="CREATE NEW TASK"
+                android:textAlignment="center"
+                android:textColor="@color/textPrimary"
+                android:textSize="28sp"
+                android:layout_marginBottom="15dp"/>
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:background="@color/colorPrimary" />
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:id="@+id/newTaskTitle"
+                style="@style/TextFIeld"
+                android:hint="Title"
+                app:counterMaxLength="30"
+                android:layout_marginTop="15dp"
+                >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/oswaldr"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <Button
+                android:id="@+id/newTaskCalendar"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="SET A DATE"
+                android:layout_gravity="center"
+                android:layout_margin="15dp"
+                android:textSize="18dp"
+                android:fontFamily="@font/bungee"
+                android:background="@color/colorPrimary"
+                android:textColor="@color/textSecondary"
+
+                />
+
+            <TextView
+                android:id="@+id/textDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/bungee"
+                android:text="asdasd"
+                android:textAlignment="center"
+                android:textColor="@color/textPrimary"
+                android:textSize="18sp"
+                android:layout_marginBottom="15dp" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:id="@+id/newTaskTime"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:hint="Time"
+                >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/oswaldr"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="REMIND ME"
+                android:fontFamily="@font/bungee"
+                android:textSize="18sp"
+                />
+
+            <Button
+                android:id="@+id/newTaskSubmit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="CREATE NEW TASK"
+                android:fontFamily="@font/bungee"
+                android:background="@color/colorPrimary"
+                android:textColor="@color/textSecondary"
+                android:textSize="25sp"
+                android:padding="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="15dp"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

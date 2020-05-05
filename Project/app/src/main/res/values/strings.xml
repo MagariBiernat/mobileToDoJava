@@ -1,14 +1,15 @@
 <resources>
 
-    <string name="app_name">Aplikacja</string>
+    <string name="app_name">ToDo App</string>
 
     <!-- LogIn Panel Strings   -->
 
     <string name="LogIn_Panel_Please">Please, Log In</string>
     <string name="Login_Login">Login</string>
     <string name="Login_Log_in">Log In</string>
+    <string name="Login_remember">Keep logged in</string>
     <string name="Login_Password">Password</string>
-    <string name="Login_Register">No account? Create one !</string>
+    <string name="Login_Register">No account yet? Create one!</string>
 
     <!--  Register Panel   -->
 
