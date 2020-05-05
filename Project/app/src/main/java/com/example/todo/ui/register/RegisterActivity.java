@@ -1,5 +1,6 @@
 package com.example.todo.ui.register;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.database.Cursor;
@@ -28,6 +29,10 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import org.w3c.dom.Text;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class RegisterActivity extends AppCompatActivity {
 
     // material edittext widgets.
@@ -48,6 +53,7 @@ public class RegisterActivity extends AppCompatActivity {
             " tasks_successful INT(10) DEFAULT 0," +
             " tasks_failed INT(10) DEFAULT 0," +
             " tasks_ongoing INT(10) DEFAULT 0 )";
+
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -141,13 +147,18 @@ public class RegisterActivity extends AppCompatActivity {
                 }
                 else  // otherwise it means the username can be created with that name.
                 {
+                    @SuppressLint("SimpleDateFormat") DateFormat date = new SimpleDateFormat("dd/MM/yyyy");
+                    String now = date.format(new Date());
                     ContentValues values = new ContentValues();
                     values.put("username", _username);
                     values.put("password", _password);
+                    values.put("date_created", now);
 
-                    //TODO put datecreated
                     if(myDatabase.insert("users", null, values) > -1)
                     {
+                        // TODO: CHECK IF ITS WORKING?
+                        String taskTable = createTasksTable(_username);
+                        myDatabase.execSQL(taskTable);
                         AlertDialog("Successful", "User has been created :)");
                     }
                 }
@@ -157,10 +168,20 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
 
-    private void createTasksTable() {
-            // TODO: Create a table with tasks for each user separately each time they create an account.
-            // TODO: HERE
-    }
+
+    private String createTasksTable(final String username) {
+          String tableTasks = "CREATE TABLE IF NOT EXISTS tasks"+username+" ( " +
+                " task_ID INTEGER PRIMARY KEY, " +
+                " title VARCHAR NOT NULL, " +
+                " date VARCHAR , " +
+                " time VARCHAR," +
+                " alarm_time INT(3)," +
+                " description VARCHAR," +
+                " image_src VARCHAR )";
+
+          return tableTasks;
+    };
+
 
 
     //Validate form

@@ -73,25 +73,29 @@ public class LoginActivity extends AppCompatActivity {
         okLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: validate fields aint empty.
-                login();
+                final String _username = username.getText().toString();
+                final String _password = password.getText().toString();
+                if(_username.equals(""))
+                    AlertDialog("Error!", "Please fill username field!");
+                else if (_password.equals(""))
+                    AlertDialog("Error!", "Please fill password field!");
+                else
+                    login(_username, _password);
             }
         });
         
         newSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent myIntent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(myIntent);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
 
     }
 
-    private Boolean login(){
-
-        //user's username and password
-        String _username = username.getText().toString();
-        String _password = password.getText().toString();
+    private void login(final String _username, final String _password){
 
         // open Database
         SQLiteDatabase myDatabase = this.openOrCreateDatabase("Users", MODE_PRIVATE, null);
@@ -102,11 +106,12 @@ public class LoginActivity extends AppCompatActivity {
         //if there are any rows received, move to first, and compare passwords.
         if(cursor.getCount() > 0){
             if(cursor.moveToFirst()){
-                String pwd = cursor.getString(cursor.getColumnIndex("password"));
+                final String pwd = cursor.getString(cursor.getColumnIndex("password"));
                 if(_password.equals(pwd)){
-                    Intent myIntent = new Intent(LoginActivity.this, RegisterActivity.class);
+                    Intent myIntent = new Intent(LoginActivity.this, Main_page.class);
+                    myIntent.putExtra("USERNAME", _username);
                     startActivity(myIntent);
-                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                     cursor.close();
                 }
                 else{
@@ -119,7 +124,6 @@ public class LoginActivity extends AppCompatActivity {
 
         //close cursor for no data leak.
         cursor.close();
-        return false;
     };
 
 

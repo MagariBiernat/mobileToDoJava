@@ -30,8 +30,7 @@ import androidx.navigation.ui.NavigationUI;
 
 public class Main_page extends AppCompatActivity {
 
-    private String LoginValue = "", PasswordValue = "";
-    private Toolbar toolbar;
+    private String username;
 
 
     @Override
@@ -40,12 +39,7 @@ public class Main_page extends AppCompatActivity {
         setContentView(R.layout.main_page);
 //        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        setSupportActionBar(toolbar);
-
-
-
-        LoginValue = getIntent().getStringExtra("LOGIN_VALUE");
-        PasswordValue = getIntent().getStringExtra("PASSWORD_VALUE");
+        username = getIntent().getStringExtra("USERNAME");
 
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
@@ -68,10 +62,7 @@ public class Main_page extends AppCompatActivity {
     }
 
 
-
-
-
-
+    public String getUsername(){return username;}
 
     @Override
     public void onBackPressed() {
@@ -82,7 +73,6 @@ public class Main_page extends AppCompatActivity {
         builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
                 dialog.cancel();
                 finish();
             }
@@ -103,5 +93,4 @@ public class Main_page extends AppCompatActivity {
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
-    public String getLogin() { return LoginValue;}
 }
