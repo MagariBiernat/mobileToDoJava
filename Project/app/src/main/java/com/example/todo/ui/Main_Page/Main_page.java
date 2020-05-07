@@ -2,6 +2,7 @@ package com.example.todo.ui.Main_Page;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.media.Image;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -31,13 +32,15 @@ import androidx.navigation.ui.NavigationUI;
 public class Main_page extends AppCompatActivity {
 
     private String username;
-
+    public SQLiteDatabase myDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_page);
 //        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        myDatabase = this.openOrCreateDatabase("Users", MODE_PRIVATE, null);
 
         username = getIntent().getStringExtra("USERNAME");
 
@@ -57,6 +60,7 @@ public class Main_page extends AppCompatActivity {
 
     public void newTaskAcitivity() {
         Intent myIntent = new Intent(Main_page.this, NewTaskActivity.class);
+        myIntent.putExtra("USERNAME", username);
         startActivity(myIntent);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }

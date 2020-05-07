@@ -7,6 +7,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+
+import java.lang.reflect.Field;
 import java.util.Calendar;
 
 public class DatePickerFragment extends DialogFragment {
@@ -19,7 +21,19 @@ public class DatePickerFragment extends DialogFragment {
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-;
-        return new DatePickerDialog(getActivity(), (DatePickerDialog.OnDateSetListener) getActivity(), year, month, day);
+        DatePickerDialog dialog = new DatePickerDialog(getContext(),(DatePickerDialog.OnDateSetListener) getActivity(), year, month, day);
+        Field mDatePickerField;
+        try {
+            mDatePickerField = dialog.getClass().getDeclaredField("mDatePicker");
+            mDatePickerField.setAccessible(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        dialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+        return dialog;
+
+//        DatePickerDialog dialog = new DatePickerDialog()
+//;
+//        return new DatePickerDialog(getActivity(), , year, month, day);
     }
 }

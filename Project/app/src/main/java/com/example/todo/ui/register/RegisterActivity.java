@@ -30,6 +30,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import org.w3c.dom.Text;
 
 import java.text.DateFormat;
+import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -45,10 +46,6 @@ public class RegisterActivity extends AppCompatActivity {
             " user_ID INTEGER PRIMARY KEY, " +
             " username VARCHAR NOT NULL, " +
             " password VARCHAR NOT NULL, " +
-            " firstName VARCHAR," +
-            " lastName VARCHAR," +
-            " age INT(3)," +
-            " gender VARCHAR," +
             " date_created VARCHAR," +
             " tasks_successful INT(10) DEFAULT 0," +
             " tasks_failed INT(10) DEFAULT 0," +
@@ -70,6 +67,8 @@ public class RegisterActivity extends AppCompatActivity {
             // Buttons
             Button registerUser = findViewById(R.id.login_loginbutton);
             Button goBack = findViewById(R.id.register_goback);
+
+            // TODO: LATER coloring fields on validation
 
 //            username.addTextChangedListener(new TextWatcher() {
 //                @Override
@@ -147,8 +146,10 @@ public class RegisterActivity extends AppCompatActivity {
                 }
                 else  // otherwise it means the username can be created with that name.
                 {
-                    @SuppressLint("SimpleDateFormat") DateFormat date = new SimpleDateFormat("dd/MM/yyyy");
+                    @SuppressLint("SimpleDateFormat") DateFormat date = new SimpleDateFormat("d/MM/yyyy");
                     String now = date.format(new Date());
+//                    String[] Data = now.split("/");
+//                    now = Data[0] + " " + getMonth(Integer.parseInt(Data[1])) + ""
                     ContentValues values = new ContentValues();
                     values.put("username", _username);
                     values.put("password", _password);
@@ -156,33 +157,44 @@ public class RegisterActivity extends AppCompatActivity {
 
                     if(myDatabase.insert("users", null, values) > -1)
                     {
-                        // TODO: CHECK IF ITS WORKING?
-                        String taskTable = createTasksTable(_username);
-                        myDatabase.execSQL(taskTable);
+                        //create user's tasks table : tasksUSERNAME
+                        myDatabase.execSQL(createTasksTable(_username));
+                        //create user's notes table : notesUSERNAME
+                        myDatabase.execSQL(createNotesTable(_username));
                         AlertDialog("Successful", "User has been created :)");
                     }
                 }
                 cursor.close();
+
+                myDatabase.close();
             }
-//            return true;
         }
 
-
-
-    private String createTasksTable(final String username) {
-          String tableTasks = "CREATE TABLE IF NOT EXISTS tasks"+username+" ( " +
-                " task_ID INTEGER PRIMARY KEY, " +
+    // NotesTable
+    private String createNotesTable(final String username) {
+        return "CREATE TABLE IF NOT EXISTS notes"+username+" ( " +
+                " note_ID INTEGER PRIMARY KEY, " +
                 " title VARCHAR NOT NULL, " +
-                " date VARCHAR , " +
-                " time VARCHAR," +
-                " alarm_time INT(3)," +
-                " description VARCHAR," +
-                " image_src VARCHAR )";
-
-          return tableTasks;
+                " description VARCHAR )";
     };
 
 
+    // TasksTable
+    private String createTasksTable(final String username) {
+        return "CREATE TABLE IF NOT EXISTS tasks"+username+" ( " +
+              " task_ID INTEGER PRIMARY KEY, " +
+              " title VARCHAR NOT NULL, " +
+              " date VARCHAR , " +
+              " time VARCHAR," +
+              " description VARCHAR," +
+              " image_src VARCHAR )";
+    };
+
+
+    //return name of month
+    private static String getMonth(int month) {
+        return new DateFormatSymbols().getMonths()[month-1];
+    }
 
     //Validate form
 
@@ -226,7 +238,6 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         });
-
         builder.show();
     }
 

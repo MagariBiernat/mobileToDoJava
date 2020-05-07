@@ -101,29 +101,33 @@ public class LoginActivity extends AppCompatActivity {
         SQLiteDatabase myDatabase = this.openOrCreateDatabase("Users", MODE_PRIVATE, null);
 
         // query looking for any rows with user's username
-        Cursor cursor = myDatabase.rawQuery("SELECT * FROM users WHERE username=?", new String [] {_username});
-
-        //if there are any rows received, move to first, and compare passwords.
-        if(cursor.getCount() > 0){
-            if(cursor.moveToFirst()){
-                final String pwd = cursor.getString(cursor.getColumnIndex("password"));
-                if(_password.equals(pwd)){
-                    Intent myIntent = new Intent(LoginActivity.this, Main_page.class);
-                    myIntent.putExtra("USERNAME", _username);
-                    startActivity(myIntent);
-                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                    cursor.close();
+        // try checks if the table 'users' exists
+        try(Cursor cursor = myDatabase.rawQuery("SELECT * FROM users WHERE username=?", new String [] {_username})){
+            if(cursor!= null) {
+                if(cursor.getCount() > 0){
+                    if(cursor.moveToFirst()){
+                        //if there are any rows received, move to first, and compare passwords.
+                        final String pwd = cursor.getString(cursor.getColumnIndex("password"));
+                        if(_password.equals(pwd)){
+                            Intent myIntent = new Intent(LoginActivity.this, Main_page.class);
+                            myIntent.putExtra("USERNAME", _username);
+                            startActivity(myIntent);
+                            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                            cursor.close();
+                        }
+                        else{
+                            AlertDialog("Error", "Wrong login or password");
+                        }
+                    }
                 }
-                else{
+                else
                     AlertDialog("Error", "Wrong login or password");
-                }
             }
-        }
-        else
-            AlertDialog("Error", "Wrong login or password");
+            else
+                AlertDialog("Error", "You need to create an account first!");
 
-        //close cursor for no data leak.
-        cursor.close();
+            //close cursor for no data leak.
+            cursor.close();        }
     };
 
 

@@ -4,8 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="10dp">
+    android:layout_height="match_parent">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -20,7 +19,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="35dp">
 
             <Button
                 android:id="@+id/buttonNewTaskBack"
@@ -59,9 +59,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:id="@+id/newTaskTitle"
                 style="@style/TextFIeld"
-                android:hint="Title"
                 app:counterMaxLength="30"
                 android:layout_marginTop="15dp"
                 >
@@ -69,6 +67,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/oswaldr"
+                    android:inputType="text"
+                    android:hint="Title ( required )"
+                    android:id="@+id/newTaskTitle"
                     />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -93,34 +94,64 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:fontFamily="@font/bungee"
-                android:text="asdasd"
+                android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/textPrimary"
+                android:textSize="18sp"/>
+
+
+            <TimePicker
+                android:id="@+id/timePicker1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:timePickerMode="spinner"
+                android:layout_gravity="center"
+                android:visibility="gone"/>
+
+            <Button
+                android:id="@+id/clear_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="clear date"
+                android:layout_gravity="center"
+                android:fontFamily="@font/bangers"
+                android:background="@color/colorPrimary"
+                android:textColor="@color/textSecondary"
+                android:textSize="19sp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="15dp"
+                android:visibility="gone"
+                />
+
+
+            <CheckBox
+                android:id="@+id/checkBoxRemind"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="REMIND ME"
+                android:layout_marginVertical="10dp"
+                android:layout_gravity="center"
+                android:buttonTint="@color/colorPrimary"
+                android:fontFamily="@font/bungee"
                 android:textSize="18sp"
-                android:layout_marginBottom="15dp" />
+                />
+
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:id="@+id/newTaskTime"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:hint="Time"
+                style="@style/TextFIeld"
+                android:layout_marginTop="15dp"
                 >
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/oswaldr"
+                    android:inputType="textLongMessage"
+                    android:hint="Description"
+                    android:id="@+id/newTaskDescription"
                     />
             </com.google.android.material.textfield.TextInputLayout>
-
-
-            <CheckBox
-                android:id="@+id/checkBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="REMIND ME"
-                android:fontFamily="@font/bungee"
-                android:textSize="18sp"
-                />
 
             <Button
                 android:id="@+id/newTaskSubmit"
@@ -132,8 +163,8 @@
                 android:textColor="@color/textSecondary"
                 android:textSize="25sp"
                 android:padding="15dp"
-                android:layout_marginTop="15dp"
                 android:layout_marginEnd="15dp"
+                android:layout_marginVertical="25dp"
                 android:layout_marginStart="15dp"/>
 
         </LinearLayout>
