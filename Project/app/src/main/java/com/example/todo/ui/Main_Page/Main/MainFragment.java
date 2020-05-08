@@ -1,7 +1,10 @@
 package com.example.todo.ui.Main_Page.Main;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,21 +23,34 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.todo.R;
 import com.example.todo.ui.Main_Page.Main_page;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 
 public class MainFragment extends Fragment {
 
     private MainViewModel mainViewModel;
-    String _username;
+    private ListView myListView;
+    private ArrayList<Task> myTasks = new ArrayList<Task>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         mainViewModel =
                 ViewModelProviders.of(this).get(MainViewModel.class);
         View root = inflater.inflate(R.layout.fragment_main, container, false);
-        _username = ((Main_page)getActivity()).getUsername();
-        ListView myListView = root.findViewById(R.id.tasksList);
+
+        //get username from parent and set it to viewmodel
+
+        String _username = ((Main_page) getActivity()).getUsername();
+        mainViewModel.setUsername(_username);
+
+        //db from parent and to viewmodel
+        SQLiteDatabase myDatabase = ((Main_page) getActivity()).myDatabase;
+        mainViewModel.setMyDatabase(myDatabase);
+
+        myListView = root.findViewById(R.id.tasksList);
+
+        mainViewModel.setTasks();
         final Button newTaskButton = root.findViewById(R.id.buttonNewTask);
 
         newTaskButton.setOnClickListener(new View.OnClickListener() {
@@ -44,45 +60,40 @@ public class MainFragment extends Fragment {
             }
         });
 
+        //observer for new tasks from view model
+        mainViewModel.getTasks().observe(getViewLifecycleOwner(), new Observer<ArrayList<Task>>() {
+            @Override
+            public void onChanged(ArrayList<Task> tasks) {
+                myTasks.clear();
+                myTasks = (ArrayList<Task>)tasks.clone();
+                fillTasks();
+            }
+        });
 
-
-
-        // TODO: send database to a viewmodel like with profile fragment, change array list to object type Tasks
         // TODO  create a custom component for listview item...
-
-
-//        final ArrayList<String> myTasks = new ArrayList<String>();
-//
-//        myTasks.add("Odkurzyc");
-//        myTasks.add("Posprzatac");
-//        myTasks.add("Odkurzyc");
-//        myTasks.add("Posprzatac");
-//        myTasks.add("Odkurzyc");
-//        myTasks.add("Posprzatac");
-//        myTasks.add("Odkurzyc");
-//        myTasks.add("Posprzatac");
-//        myTasks.add("Odkurzyc");
-//        myTasks.add("Posprzatac");
-//
-//        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, myTasks);
-//
-//        myListView.setAdapter(arrayAdapter);
-//
-//        myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Toast.makeText(getActivity(), myTasks.get(position), Toast.LENGTH_SHORT).show();
-//            }
-//        });
-        
-        
         return root;
+    }
+
+    private void fillTasks(){
+
+        ArrayAdapter<Task> arrayAdapter = new ArrayAdapter<Task>(getContext(), android.R.layout.simple_list_item_1, myTasks);
+
+        myListView.setAdapter(arrayAdapter);
+
+        myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //TODO: create an activity for each task !
+                 Toast.makeText(getActivity(), myTasks.get(position).getTitle(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 
     @Override
     public void onResume() {
         super.onResume();
+        mainViewModel.setTasks();
         //TODO: refresh tasks from database
     }
 }

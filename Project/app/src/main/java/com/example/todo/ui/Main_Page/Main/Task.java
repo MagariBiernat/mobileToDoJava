@@ -9,5 +9,12 @@ public class Task {
     private int alarm_time;
     private String description;
 
+    public Task(int _id, String _title){
+        this.id = _id;
+        this.title = _title;
+    }
 
+    public String getTitle() {
+        return title;
+    }
 }
