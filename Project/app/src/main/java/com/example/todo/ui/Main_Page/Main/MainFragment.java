@@ -77,13 +77,13 @@ public class MainFragment extends Fragment {
     private void fillTasks(){
 
         ArrayAdapter<Task> arrayAdapter = new ArrayAdapter<Task>(getContext(), android.R.layout.simple_list_item_1, myTasks);
-
         myListView.setAdapter(arrayAdapter);
 
         myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //TODO: create an activity for each task !
+                ((Main_page)getActivity()).showTaskActivity(myTasks.get(position).getID(), myTasks.get(position).getTitle());
                  Toast.makeText(getActivity(), myTasks.get(position).getTitle(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -94,6 +94,7 @@ public class MainFragment extends Fragment {
     public void onResume() {
         super.onResume();
         mainViewModel.setTasks();
+        this.fillTasks();
         //TODO: refresh tasks from database
     }
 }

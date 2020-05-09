@@ -39,6 +39,7 @@ public class MainViewModel extends ViewModel {
 
     void setTasks(){
 
+        myTasks.clear();
         String tasksTable = "tasks"+_username;
 
         try(Cursor cursor = myDatabase.rawQuery("SELECT * FROM "+tasksTable, new String [] {})){

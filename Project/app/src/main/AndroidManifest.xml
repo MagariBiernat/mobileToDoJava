@@ -50,6 +50,13 @@
             tools:ignore="InnerclassSeparator,LockedOrientationActivity"
             android:windowSoftInputMode="adjustPan" />
 
+        <activity android:name=".ui.Main_Page.Main.showTaskActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator,LockedOrientationActivity"
+            android:windowSoftInputMode="adjustPan"
+            />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

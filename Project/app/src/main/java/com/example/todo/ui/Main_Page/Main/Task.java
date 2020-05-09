@@ -14,6 +14,7 @@ public class Task {
         this.title = _title;
     }
 
+    public int getID(){return id;}
     public String getTitle() {
         return title;
     }

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingHorizontal="35dp"
+    android:paddingVertical="15dp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <Button
+                    android:id="@+id/goBackButton"
+                    android:layout_width="120dp"
+                    android:layout_height="match_parent"
+                    android:drawableStart="@drawable/ic_arrow_left"
+                    android:drawableTint="@color/colorPrimary"
+                    android:background="#00000000"
+                    android:text="GO BACK"
+                    android:fontFamily="@font/bungee"
+                    android:textColor="@color/colorPrimary"
+                    android:layout_gravity="start"
+                    />
+
+                <Button
+                    android:id="@+id/settingsTasks"
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
+                    android:drawableStart="@drawable/ic_cog"
+                    android:drawableTint="@color/colorPrimary"
+                    android:background="#00000000"
+                    />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TASK"
+                android:fontFamily="@font/bangers"
+                android:textColor="@color/textPrimary"
+                android:textSize="21sp"
+                android:textAlignment="center"
+                android:layout_marginVertical="15dp"/>
+
+            <TextView
+                android:id="@+id/taskTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/antic"
+                android:textColor="@color/textPrimary"
+                android:textSize="18sp"
+                android:textAlignment="center"
+                android:layout_marginVertical="5dp"
+                />
+
+
+
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

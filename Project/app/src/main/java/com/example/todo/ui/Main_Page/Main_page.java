@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.example.todo.R;
 import com.example.todo.ui.MainActivity;
 import com.example.todo.ui.Main_Page.Main.NewTaskActivity;
+import com.example.todo.ui.Main_Page.Main.showTaskActivity;
 import com.example.todo.ui.login.LoginActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -44,7 +45,6 @@ public class Main_page extends AppCompatActivity {
 
         username = getIntent().getStringExtra("USERNAME");
 
-
         BottomNavigationView navView = findViewById(R.id.nav_view);
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_main, R.id.navigation_stats, R.id.navigation_profile)
@@ -52,11 +52,19 @@ public class Main_page extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupWithNavController(navView, navController);
 
-
         // Welcome TOAST
         Toast.makeText(getApplicationContext(),"Welcome ", Toast.LENGTH_SHORT).show();
 
     }
+
+    public void showTaskActivity(int id, String title){
+        Intent myIntent = new Intent(Main_page.this, showTaskActivity.class);
+        myIntent.putExtra("TASK_ID", id);
+        myIntent.putExtra("TASK_TITLE", title);
+        startActivity(myIntent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+    }
+
 
     public void newTaskAcitivity() {
         Intent myIntent = new Intent(Main_page.this, NewTaskActivity.class);
