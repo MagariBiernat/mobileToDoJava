@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.media.Image;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,6 +19,7 @@ import com.example.todo.R;
 import com.example.todo.ui.MainActivity;
 import com.example.todo.ui.Main_Page.Main.NewTaskActivity;
 import com.example.todo.ui.Main_Page.Main.showTaskActivity;
+import com.example.todo.ui.Main_Page.Notes.NewNoteActivity;
 import com.example.todo.ui.login.LoginActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -61,6 +63,7 @@ public class Main_page extends AppCompatActivity {
         Intent myIntent = new Intent(Main_page.this, showTaskActivity.class);
         myIntent.putExtra("TASK_ID", id);
         myIntent.putExtra("TASK_TITLE", title);
+        myIntent.putExtra("USERNAME", username);
         startActivity(myIntent);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
@@ -73,6 +76,12 @@ public class Main_page extends AppCompatActivity {
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
+    public void newNoteActivity(){
+        Intent myIntent = new Intent(Main_page.this, NewNoteActivity.class);
+        myIntent.putExtra("USERNAME", username);
+        startActivity(myIntent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+    }
 
     public String getUsername(){return username;}
 
@@ -82,14 +91,14 @@ public class Main_page extends AppCompatActivity {
         builder.setCancelable(true);
         builder.setTitle("Log out");
         builder.setMessage("Are You sure You want to log out ?!");
-        builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
                 finish();
             }
         });
-        builder.setPositiveButton( "No!", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton( "No!", new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -102,7 +111,13 @@ public class Main_page extends AppCompatActivity {
     @Override
     public void finish() {
         super.finish();
+        myDatabase.close();
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i("asdfasdf", " krul wielki");
+    }
 }

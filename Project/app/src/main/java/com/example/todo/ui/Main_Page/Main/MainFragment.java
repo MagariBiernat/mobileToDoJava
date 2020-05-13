@@ -30,6 +30,7 @@ import java.util.ArrayList;
 public class MainFragment extends Fragment {
 
     private MainViewModel mainViewModel;
+    SQLiteDatabase myDatabase;
     private ListView myListView;
     private ArrayList<Task> myTasks = new ArrayList<Task>();
 
@@ -45,7 +46,7 @@ public class MainFragment extends Fragment {
         mainViewModel.setUsername(_username);
 
         //db from parent and to viewmodel
-        SQLiteDatabase myDatabase = ((Main_page) getActivity()).myDatabase;
+        myDatabase = ((Main_page) getActivity()).myDatabase;
         mainViewModel.setMyDatabase(myDatabase);
 
         myListView = root.findViewById(R.id.tasksList);
@@ -70,19 +71,21 @@ public class MainFragment extends Fragment {
             }
         });
 
-        // TODO  create a custom component for listview item...
         return root;
     }
 
     private void fillTasks(){
 
-        ArrayAdapter<Task> arrayAdapter = new ArrayAdapter<Task>(getContext(), android.R.layout.simple_list_item_1, myTasks);
-        myListView.setAdapter(arrayAdapter);
+        AdapterTasks adapterTasks;
+
+        //TODO if msg is to make it red make it red lol
+
+        adapterTasks = new AdapterTasks(getActivity(), 0, myTasks);
+        myListView.setAdapter(adapterTasks);
 
         myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //TODO: create an activity for each task !
                 ((Main_page)getActivity()).showTaskActivity(myTasks.get(position).getID(), myTasks.get(position).getTitle());
                  Toast.makeText(getActivity(), myTasks.get(position).getTitle(), Toast.LENGTH_SHORT).show();
             }
@@ -93,8 +96,7 @@ public class MainFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        myTasks.clear();
         mainViewModel.setTasks();
-        this.fillTasks();
-        //TODO: refresh tasks from database
     }
 }

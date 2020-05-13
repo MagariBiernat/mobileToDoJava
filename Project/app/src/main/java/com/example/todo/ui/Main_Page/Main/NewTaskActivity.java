@@ -127,7 +127,15 @@ public class NewTaskActivity extends AppCompatActivity implements DatePickerDial
                     }
                     if(myDatabase.insert("tasks"+username, null, values) > -1)
                     {
-                        Log.i("Database", "it works :O");
+                        //Log.i("Database", "it works :O");
+                        Integer count = getTasksOnGoing();
+                        if(count > -1)
+                        {
+                            ++count;
+                            ContentValues val = new ContentValues();
+                            val.put("tasks_ongoing", count);
+                            myDatabase.update("users",val,"username=?",new String[] {username});
+                        }
                         myDatabase.close();
                         finish();
                     }
@@ -139,6 +147,17 @@ public class NewTaskActivity extends AppCompatActivity implements DatePickerDial
             }
         });
     }
+
+    int getTasksOnGoing(){
+        Cursor cursor = myDatabase.rawQuery("SELECT tasks_ongoing from users where username=?", new String[] {username});
+        if(cursor.getCount() > 0)
+        {
+            cursor.moveToFirst();
+            return cursor.getInt(cursor.getColumnIndex("tasks_ongoing"));
+        } else
+        return -1;
+    }
+
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {

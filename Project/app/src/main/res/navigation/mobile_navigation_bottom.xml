@@ -14,9 +14,9 @@
 
     <fragment
         android:id="@+id/navigation_stats"
-        android:name="com.example.todo.ui.Main_Page.Stats.StatsFragment"
+        android:name="com.example.todo.ui.Main_Page.Notes.NotesFragment"
         android:label="@string/Stats_title"
-        tools:layout="@layout/fragment_stats" />
+        tools:layout="@layout/fragment_notes" />
 
     <fragment
         android:id="@+id/navigation_profile"

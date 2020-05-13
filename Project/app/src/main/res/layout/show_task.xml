@@ -1,77 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingHorizontal="35dp"
-    android:paddingVertical="15dp">
+    android:paddingVertical="25dp">
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
+                android:orientation="horizontal">
+
                 <Button
                     android:id="@+id/goBackButton"
                     android:layout_width="120dp"
                     android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_gravity="start"
+                    android:background="#00000000"
                     android:drawableStart="@drawable/ic_arrow_left"
                     android:drawableTint="@color/colorPrimary"
-                    android:background="#00000000"
-                    android:text="GO BACK"
                     android:fontFamily="@font/bungee"
-                    android:textColor="@color/colorPrimary"
-                    android:layout_gravity="start"
-                    />
+                    android:text="GO BACK"
+                    android:textColor="@color/colorPrimary" />
 
-                <Button
+                <ImageView
                     android:id="@+id/settingsTasks"
-                    android:layout_width="150dp"
-                    android:layout_height="match_parent"
-                    android:drawableStart="@drawable/ic_cog"
-                    android:drawableTint="@color/colorPrimary"
-                    android:background="#00000000"
-                    />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_cog"
+                    android:tint="@color/colorPrimary" />
 
-            </LinearLayout>
+            </RelativeLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TASK"
+                android:layout_marginVertical="15dp"
                 android:fontFamily="@font/bangers"
-                android:textColor="@color/textPrimary"
-                android:textSize="21sp"
+                android:text="TASK"
                 android:textAlignment="center"
-                android:layout_marginVertical="15dp"/>
+                android:textColor="@color/textPrimary"
+                android:textSize="21sp" />
 
             <TextView
                 android:id="@+id/taskTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/antic"
-                android:textColor="@color/textPrimary"
-                android:textSize="18sp"
-                android:textAlignment="center"
                 android:layout_marginVertical="5dp"
-                />
+                android:fontFamily="@font/antic"
+                android:textAlignment="center"
+                android:textColor="@color/textPrimary"
+                android:textSize="18sp" />
 
 
+            <TextView
+                android:id="@+id/taskDateTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:fontFamily="@font/antic"
+                android:textAlignment="center"
+                android:textColor="@color/textPrimary"
+                android:textSize="18sp" />
 
+            <TextView
+                android:id="@+id/taskReminded"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:fontFamily="@font/antic"
+                android:textAlignment="center"
+                android:textColor="@color/textPrimary"
+                android:textSize="18sp" />
 
+            <TextView
+                android:id="@+id/taskDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:fontFamily="@font/antic"
+                android:textAlignment="center"
+                android:textColor="@color/textPrimary"
+                android:textSize="18sp" />
 
 
         </LinearLayout>
 
     </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/taskCompleted"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_gravity="left"
+            android:fontFamily="@font/bungee"
+            android:textColor="@color/textSecondary"
+            android:background="@color/colorPrimaryDark"
+            android:text="complete"
+            android:layout_marginEnd="10dp"/>
+
+        <Button
+            android:id="@+id/taskDelete"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:textColor="@color/textSecondary"
+            android:fontFamily="@font/bungee"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:background="#B13D3D"
+            android:text="delete" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

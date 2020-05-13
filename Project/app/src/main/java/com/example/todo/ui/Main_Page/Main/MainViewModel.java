@@ -33,7 +33,7 @@ public class MainViewModel extends ViewModel {
         this.myDatabase = db;
     }
 
-    public void setUsername(String username){
+    void setUsername(String username){
         this._username = username;
     }
 
@@ -50,8 +50,12 @@ public class MainViewModel extends ViewModel {
                     for(int i = 1; i <= cursor.getCount() ; i++)
                     {
                         myTasks.add(new Task(cursor.getInt(cursor.getColumnIndex("task_ID")), cursor.getString(cursor.getColumnIndex("title"))) );
+                        //TODO: check if date is past if is then send a message to make background..red?
                         cursor.moveToNext();
                     }
+                    myTasksLive.setValue(myTasks);
+                }
+                if(cursor.getCount() == 0){
                     myTasksLive.setValue(myTasks);
                 }
             }

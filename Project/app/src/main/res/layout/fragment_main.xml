@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_marginVertical="15dp">
 
 
     <ScrollView
@@ -25,6 +26,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentStart="true"
+                    android:text="YOUR TASKS"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/textPrimary"
+                    android:fontFamily="@font/bungee"
+                    android:textSize="23sp"/>
+
                 <Button
                     android:id="@+id/buttonNewTask"
                     android:layout_width="wrap_content"
@@ -35,30 +48,19 @@
                     android:fontFamily="@font/bungee"
                     android:text="New Task"
                     android:layout_alignParentRight="true"
-                    android:drawablePadding="15dp"
-                    android:textSize="17sp"
-                    android:padding="10dp"/>
+                    android:drawablePadding="13dp"
+                    android:textSize="14sp"
+                    android:padding="5dp"/>
 
             </RelativeLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:text="YOUR TASKS"
-                android:textColor="@color/textPrimary"
-                android:fontFamily="@font/bungee"
-                android:textSize="25sp"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="15dp"/>
 
 
             <ListView
                 android:id="@+id/tasksList"
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
-                tools:listitem=""
-                />
+                android:layout_height="450dp"
+
+                tools:listitem="" />
 
 
 

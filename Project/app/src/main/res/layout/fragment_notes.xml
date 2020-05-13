@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_marginVertical="15dp">
 
 
     <ScrollView
@@ -16,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:padding="15dp"
+            android:padding="35dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -25,6 +26,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentStart="true"
+                    android:text="YOUR NOTES"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/textPrimary"
+                    android:fontFamily="@font/bungee"
+                    android:textSize="23sp"/>
                 <Button
                     android:id="@+id/buttonNewNote"
                     android:layout_width="wrap_content"
@@ -34,28 +46,20 @@
                     android:fontFamily="@font/bungee"
                     android:text="New Note"
                     android:layout_alignParentRight="true"
-                    android:textSize="17sp"
-                    android:paddingVertical="10dp"
-                    android:paddingHorizontal="25dp"/>
+                    android:drawableEnd="@drawable/ic_plus"
+                    android:drawablePadding="13dp"
+                    android:textSize="14sp"
+                    android:padding="5dp"/>
 
             </RelativeLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:text="YOUR NOTES"
-                android:textColor="@color/textPrimary"
-                android:fontFamily="@font/bungee"
-                android:textSize="25sp"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="15dp"/>
+
 
 
             <ListView
                 android:id="@+id/notesList"
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
+                android:layout_height="450dp"
                 tools:listitem=""
                 />
 

@@ -107,7 +107,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 }
             });
-            SQLiteDatabase myDatabase = this.openOrCreateDatabase("Users", MODE_PRIVATE, null);
+
         }
 
         // this occurs when user clicks NEXT on keyboard while on third EditText( Confirm Password)

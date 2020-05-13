@@ -28,6 +28,9 @@ public class ProfileFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
         final TextView usernameText = root.findViewById(R.id.userName);
         final TextView dateCreated = root.findViewById(R.id.date_created);
+        final TextView tasksSuccess = root.findViewById(R.id.tasksSuccessful);
+        final TextView tasksFailed = root.findViewById(R.id.tasksFailed);
+        final TextView tasksOnGoing = root.findViewById(R.id.tasksOnGoing);
         final String username = ((Main_page)getActivity()).getUsername();
         myDatabase = ((Main_page)getActivity()).myDatabase;
         profileViewModel.setUsername(username);
@@ -44,6 +47,28 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+        //observe for tasks susccessful and failed
+
+        profileViewModel.getSuccess().observe(getViewLifecycleOwner(), new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                tasksSuccess.setText("Tasks Successful done : "+integer.toString());
+            }
+        });
+
+        profileViewModel.getFailed().observe(getViewLifecycleOwner(), new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                tasksFailed.setText("Tasks failed : "+ integer.toString());
+            }
+        });
+
+        profileViewModel.getOnGoing().observe(getViewLifecycleOwner(), new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                tasksOnGoing.setText("Tasks On Going now : "+ integer.toString());
+            }
+        });
 
 
         return root;
