@@ -15,8 +15,8 @@ public class NotesViewModel extends ViewModel {
     private String _username;
     private SQLiteDatabase myDatabase;
 
-    private ArrayList<String> myNotes = new ArrayList<String>();
-    private MutableLiveData<ArrayList<String>> myNotesLive;
+    private ArrayList<Note> myNotes = new ArrayList<Note>();
+    private MutableLiveData<ArrayList<Note>> myNotesLive;
 
 
     public NotesViewModel() {
@@ -32,19 +32,19 @@ public class NotesViewModel extends ViewModel {
             if(cursor!=null){
                 if(cursor.getCount()>0){
                     cursor.moveToFirst();
-                    for(int i = 0; i<= cursor.getCount() ; i++){
-                        myNotes.add(cursor.getString(cursor.getColumnIndex("title")));
+                    for(int i = 1; i<= cursor.getCount() ; i++){
+                        myNotes.add(new Note(cursor.getInt(cursor.getColumnIndex("note_ID")), cursor.getString(cursor.getColumnIndex("title"))));
                         cursor.moveToNext();
                     }
                     myNotesLive.setValue(myNotes);
                 }
-                if(cursor.getCount() == 0)
+                else if(cursor.getCount() == 0)
                     myNotesLive.setValue(myNotes);
             }
         }
     }
 
-    LiveData<ArrayList<String>> getNotes() {return myNotesLive;}
+    LiveData<ArrayList<Note>> getNotes() {return myNotesLive;}
 
 
 

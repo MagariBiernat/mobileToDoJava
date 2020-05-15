@@ -20,6 +20,7 @@ import com.example.todo.ui.MainActivity;
 import com.example.todo.ui.Main_Page.Main.NewTaskActivity;
 import com.example.todo.ui.Main_Page.Main.showTaskActivity;
 import com.example.todo.ui.Main_Page.Notes.NewNoteActivity;
+import com.example.todo.ui.Main_Page.Notes.ShowNoteActivity;
 import com.example.todo.ui.login.LoginActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -63,6 +64,15 @@ public class Main_page extends AppCompatActivity {
         Intent myIntent = new Intent(Main_page.this, showTaskActivity.class);
         myIntent.putExtra("TASK_ID", id);
         myIntent.putExtra("TASK_TITLE", title);
+        myIntent.putExtra("USERNAME", username);
+        startActivity(myIntent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+    }
+
+    public void showNoteActivity(int id, String title){
+        Intent myIntent = new Intent(Main_page.this, ShowNoteActivity.class);
+        myIntent.putExtra("NOTE_ID", id);
+        myIntent.putExtra("NOTE_TITLE", title);
         myIntent.putExtra("USERNAME", username);
         startActivity(myIntent);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
@@ -118,6 +128,5 @@ public class Main_page extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Log.i("asdfasdf", " krul wielki");
     }
 }

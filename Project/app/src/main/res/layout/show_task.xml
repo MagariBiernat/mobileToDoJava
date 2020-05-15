@@ -28,25 +28,32 @@
 
                 <Button
                     android:id="@+id/goBackButton"
-                    android:layout_width="120dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignParentStart="true"
                     android:layout_gravity="start"
                     android:background="#00000000"
+                    android:padding="15dp"
                     android:drawableStart="@drawable/ic_arrow_left"
                     android:drawableTint="@color/colorPrimary"
+                    android:drawablePadding="15dp"
+                    android:foreground="?android:attr/selectableItemBackground"
                     android:fontFamily="@font/bungee"
                     android:text="GO BACK"
                     android:textColor="@color/colorPrimary" />
 
-                <ImageView
+                <Button
                     android:id="@+id/settingsTasks"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_alignParentEnd="true"
-                    android:padding="10dp"
-                    android:src="@drawable/ic_cog"
-                    android:tint="@color/colorPrimary" />
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:fontFamily="@font/bungee"
+                    android:textColor="@color/colorPrimary"
+                    android:padding="15dp"
+                    android:text="EDIT"
+                    android:background="#00000000"
+                    />
 
             </RelativeLayout>
 
@@ -56,9 +63,23 @@
                 android:layout_marginVertical="15dp"
                 android:fontFamily="@font/bangers"
                 android:text="TASK"
-                android:textAlignment="center"
+                android:textAlignment="viewStart"
                 android:textColor="@color/textPrimary"
-                android:textSize="21sp" />
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Title"
+                android:textSize="12sp"
+                android:textColor="@color/hintPrimary"
+                style="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
+                android:textAlignment="viewStart"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/hintPrimary"/>
 
             <TextView
                 android:id="@+id/taskTitle"
@@ -66,20 +87,32 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
                 android:fontFamily="@font/antic"
-                android:textAlignment="center"
+                android:textAlignment="viewStart"
                 android:textColor="@color/textPrimary"
-                android:textSize="18sp" />
+                android:textSize="15sp"
+                android:paddingBottom="10dp"/>
+
 
 
             <TextView
-                android:id="@+id/taskDateTime"
+                android:id="@+id/taskDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="5dp"
+                android:layout_marginVertical="10dp"
                 android:fontFamily="@font/antic"
-                android:textAlignment="center"
+                android:textAlignment="viewStart"
                 android:textColor="@color/textPrimary"
-                android:textSize="18sp" />
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/taskTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:fontFamily="@font/antic"
+                android:textAlignment="viewStart"
+                android:textColor="@color/textPrimary"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/taskReminded"
@@ -91,15 +124,31 @@
                 android:textColor="@color/textPrimary"
                 android:textSize="18sp" />
 
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Description"
+                android:textSize="12sp"
+                android:textColor="@color/hintPrimary"
+                style="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
+                android:textAlignment="viewStart"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/hintPrimary"/>
+
+
             <TextView
                 android:id="@+id/taskDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
                 android:fontFamily="@font/antic"
-                android:textAlignment="center"
+                android:textAlignment="viewStart"
                 android:textColor="@color/textPrimary"
-                android:textSize="18sp" />
+                android:textSize="15sp" />
 
 
         </LinearLayout>
@@ -124,11 +173,13 @@
             android:fontFamily="@font/bungee"
             android:textColor="@color/textSecondary"
             android:background="@color/colorPrimaryDark"
+            android:foreground="?android:attr/selectableItemBackground"
             android:text="complete"
             android:layout_marginEnd="10dp"/>
 
         <Button
             android:id="@+id/taskDelete"
+            android:foreground="?android:attr/selectableItemBackground"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_gravity="right"

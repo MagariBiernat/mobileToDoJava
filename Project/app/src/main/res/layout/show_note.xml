@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:id="@+id/scrollView3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="80dp"
+        app:layout_constraintBottom_toTopOf="@+id/noteDelete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
+            android:orientation="vertical"
+            android:padding="35dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/goBackButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_gravity="start"
+                    android:background="#00000000"
+                    android:drawableStart="@drawable/ic_arrow_left"
+                    android:drawablePadding="15dp"
+                    android:drawableTint="@color/colorPrimary"
+                    android:fontFamily="@font/bungee"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:padding="10dp"
+                    android:text="GO BACK"
+                    android:textColor="@color/colorPrimary" />
+
+                <Button
+                    android:id="@+id/editNote"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:background="#00000000"
+                    android:fontFamily="@font/bungee"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:padding="15dp"
+                    android:text="EDIT"
+                    android:textColor="@color/colorPrimary" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="15dp"
+                android:fontFamily="@font/bangers"
+                android:text="NOTE"
+                android:textAlignment="viewStart"
+                android:textColor="@color/textPrimary"
+                android:textSize="18sp" />
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Title"
+                android:textAlignment="viewStart"
+                android:textColor="@color/hintPrimary"
+                android:textSize="12sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/hintPrimary" />
+
+            <TextView
+                android:id="@+id/noteShowTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="35dp"
+                android:fontFamily="@font/antic"
+                android:textAlignment="viewStart"
+                android:textColor="@color/textPrimary"
+                android:textSize="21dp" />
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Description"
+                android:textAlignment="viewStart"
+                android:textColor="@color/hintPrimary"
+                android:textSize="12sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/hintPrimary" />
+
+            <TextView
+                android:id="@+id/noteShowDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/antic"
+                android:scrollbars="vertical"
+
+                android:textAlignment="viewStart"
+                android:textColor="@color/textPrimary"
+                android:textSize="21dp" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/noteDelete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginVertical="15dp"
+        android:layout_marginBottom="50dp"
+        android:background="#B13D3D"
+        android:fontFamily="@font/bungee"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:text="delete"
+        android:textColor="@color/textSecondary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="50dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

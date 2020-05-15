@@ -67,6 +67,7 @@
                         android:layout_width="match_parent"
                         android:id="@+id/username"
                         android:inputType="text"
+                        android:imeOptions="actionNext"
                         android:singleLine="true"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/oswaldr"
@@ -84,7 +85,7 @@
                         android:id="@+id/password"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/oswaldr"
-                        android:imeOptions="actionSend"
+                        android:imeOptions="actionNext"
                         android:inputType="textPassword" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -94,6 +95,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="2dp"
                     android:text="Remember me"
+                    android:imeOptions="actionNext"
+                    android:foreground="?android:attr/selectableItemBackground"
                     android:buttonTint="@color/colorPrimary"
                     android:checked="false"/>
 
@@ -109,6 +112,7 @@
                     android:textSize="17sp"
                     android:elevation="0dp"
                     android:textColor="@color/textPrimary"
+                    android:foreground="?android:attr/selectableItemBackground"
                     />
 
                 <Button
@@ -122,6 +126,7 @@
                     android:transitionName="button"
                     android:layout_marginBottom="5dp"
                     android:textColor="@color/textSecondary"
+                    android:foreground="?android:attr/selectableItemBackground"
                     android:id="@+id/login_loginbutton"
                     />
 
@@ -131,6 +136,7 @@
                     android:layout_height="wrap_content"
                     android:background="#00000000"
                     android:textSize="17sp"
+                    android:foreground="?android:attr/selectableItemBackground"
                     android:text="NEW HERE? SIGN UP"
                     android:textColor="@color/textPrimary"
                     android:elevation="0dp"

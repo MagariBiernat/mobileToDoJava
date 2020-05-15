@@ -15,6 +15,7 @@ import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
@@ -175,6 +176,8 @@ public class NewTaskActivity extends AppCompatActivity implements DatePickerDial
         // array
         // 0 -> day, 1 -> month, 2 -> year
         dateSet = (test.format(calendar.getTime()));
+
+
         String currentDateString = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
         date.setText(currentDateString);
 

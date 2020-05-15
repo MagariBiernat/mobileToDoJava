@@ -1,15 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tasdfasfassdfasdfasdfasf"
-        tools:layout_editor_absoluteX="245dp"
-        tools:layout_editor_absoluteY="249dp" />
+        android:orientation="vertical"
+        android:padding="35dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <Button
+                android:id="@+id/buttonNewNoteBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_arrow_left"
+                android:drawablePadding="15dp"
+                android:layout_weight="1"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:paddingHorizontal="15dp"
+                android:text="BACK"
+                android:background="#00000000"
+                android:textColor="@color/colorPrimary"
+                android:fontFamily="@font/bungee"
+                android:drawableTint="@color/colorPrimary"
+                android:textSize="17sp"
+
+                />
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="110dp"
+                android:layout_weight="2"
+                android:src="@drawable/ic_undraw_specs_djh3"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/bungee"
+            android:text="CREATE NEW TOTE"
+            android:textAlignment="center"
+            android:textColor="@color/textPrimary"
+            android:textSize="16sp"
+            android:layout_marginBottom="15dp"/>
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@color/colorPrimary" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            style="@style/TextFIeld"
+            app:counterMaxLength="30"
+            android:layout_marginTop="15dp"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/oswaldr"
+                android:inputType="text"
+                android:hint="Title ( required )"
+                android:id="@+id/newNoteTitle"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_height="200dp"
+            android:layout_width="match_parent"
+            style="@style/TextFIeld"
+            android:layout_marginTop="15dp"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:fontFamily="@font/oswaldr"
+                android:inputType="textMultiLine"
+                android:lines="10"
+                android:gravity="top|left"
+                android:hint="Description"
+                android:id="@+id/newNoteDescription"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <Button
+            android:id="@+id/newNoteSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CREATE NEW NOTE"
+            android:fontFamily="@font/bungee"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/textSecondary"
+            android:textSize="13sp"
+            android:padding="15dp"
+            android:layout_marginVertical="25dp"
+            android:layout_marginHorizontal="75dp"/>
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

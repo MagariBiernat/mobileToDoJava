@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -27,7 +28,8 @@ public class NotesFragment extends Fragment {
     private NotesViewModel notesViewModel;
     SQLiteDatabase myDatabase;
     private ListView myListView;
-    private ArrayList<String> myNotes = new ArrayList<String>();
+    LinearLayout layout;
+    private ArrayList<Note> myNotes = new ArrayList<Note>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -40,6 +42,7 @@ public class NotesFragment extends Fragment {
         String _username = ((Main_page)getActivity()).getUsername();
         notesViewModel.setUsername(_username);
 
+        layout = root.findViewById(R.id.notesNone);
         //database
         myDatabase = ((Main_page)getActivity()).myDatabase;
         notesViewModel.setMyDatabase(myDatabase);
@@ -56,11 +59,11 @@ public class NotesFragment extends Fragment {
         });
 
 
-        notesViewModel.getNotes().observe(getViewLifecycleOwner(), new Observer<ArrayList<String>>() {
+        notesViewModel.getNotes().observe(getViewLifecycleOwner(), new Observer<ArrayList<Note>>() {
             @Override
-            public void onChanged(ArrayList<String> strings) {
+            public void onChanged(ArrayList<Note> strings) {
                 myNotes.clear();
-                myNotes = (ArrayList<String>)strings.clone();
+                myNotes = (ArrayList<Note>)strings.clone();
                 fillTasks();
             }
         });
@@ -69,15 +72,24 @@ public class NotesFragment extends Fragment {
     }
 
     private void fillTasks(){
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, myNotes);
+        AdapterNotes adapterNotes;
 
-        myListView.setAdapter(arrayAdapter);
+        int count = myNotes.size();
+
+        if(count == 0){
+            layout.setVisibility(View.VISIBLE);
+        } else{
+            layout.setVisibility(View.GONE);
+        }
+
+        adapterNotes = new AdapterNotes(getActivity(),0,myNotes);
+
+        myListView.setAdapter(adapterNotes);
 
         myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getActivity(), myNotes.get(position), Toast.LENGTH_SHORT).show();
-                //TODO: show notes on new notes activity
+                ((Main_page)getActivity()).showNoteActivity(myNotes.get(position).getId(), myNotes.get(position).getTitle());
             }
         });
     }

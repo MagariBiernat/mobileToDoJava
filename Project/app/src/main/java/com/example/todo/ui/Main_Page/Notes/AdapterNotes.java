@@ -1,4 +1,4 @@
-package com.example.todo.ui.Main_Page.Main;
+package com.example.todo.ui.Main_Page.Notes;
 
 import android.app.Activity;
 import android.content.Context;
@@ -12,14 +12,14 @@ import com.example.todo.R;
 
 import java.util.ArrayList;
 
-public class AdapterTasks extends ArrayAdapter<Task> {
+public class AdapterNotes extends ArrayAdapter<Note> {
     private Activity activity;
-    private ArrayList<Task> listTask;
+    private ArrayList<Note> listTask;
     private static LayoutInflater inflater = null;
 
     //my own adapter for listView
 
-    public AdapterTasks (Activity activity, int textViewResourceId, ArrayList<Task> _listTasks){
+    public AdapterNotes (Activity activity, int textViewResourceId, ArrayList<Note> _listTasks){
         super(activity, textViewResourceId, _listTasks);
         try{
             this.activity = activity;
@@ -35,7 +35,7 @@ public class AdapterTasks extends ArrayAdapter<Task> {
         return listTask.size();
     }
 
-    public Task getItem(Task position) {
+    public Note getItem(Note position) {
         return position;
     }
 
@@ -64,8 +64,6 @@ public class AdapterTasks extends ArrayAdapter<Task> {
                 holder = (ViewHolder) vi.getTag();
             }
             holder.display_name.setText(listTask.get(position).getTitle());
-            if(listTask.get(position).isPast())
-              holder.display_name.setTextColor(0xffff0000);
         } catch (Exception e) {
 
 

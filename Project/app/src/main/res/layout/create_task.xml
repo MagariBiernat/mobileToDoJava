@@ -9,9 +9,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="1dp"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -22,20 +20,36 @@
             android:orientation="vertical"
             android:padding="35dp">
 
-            <Button
-                android:id="@+id/buttonNewTaskBack"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
-                android:drawableStart="@drawable/ic_arrow_left"
-                android:drawablePadding="15dp"
-                android:fontFamily="@font/bungee"
-                android:paddingHorizontal="15dp"
-                android:text="BACK"
-                android:textColor="#fff"
-                android:textSize="17sp"
+                android:orientation="horizontal"
+                android:weightSum="3">
 
-                />
+                <Button
+                    android:id="@+id/buttonNewTaskBack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_arrow_left"
+                    android:drawablePadding="15dp"
+                    android:layout_weight="1"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:paddingHorizontal="15dp"
+                    android:text="BACK"
+                    android:background="#00000000"
+                    android:textColor="@color/colorPrimary"
+                    android:fontFamily="@font/bungee"
+                    android:drawableTint="@color/colorPrimary"
+                    android:textSize="17sp"
+
+                    />
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="2"
+                    android:src="@drawable/ic_undraw_my_documents_ym8x_1"
+                    />
+            </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
@@ -45,13 +59,13 @@
                 android:text="CREATE NEW TASK"
                 android:textAlignment="center"
                 android:textColor="@color/textPrimary"
-                android:textSize="28sp"
+                android:textSize="16sp"
                 android:layout_marginBottom="15dp"/>
 
             <View
                 android:id="@+id/divider"
                 android:layout_width="match_parent"
-                android:layout_height="5dp"
+                android:layout_height="3dp"
                 android:background="@color/colorPrimary" />
 
 
@@ -76,12 +90,14 @@
 
             <Button
                 android:id="@+id/newTaskCalendar"
-                android:layout_width="150dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="SET A DATE"
                 android:layout_gravity="center"
-                android:layout_margin="15dp"
-                android:textSize="18dp"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:layout_margin="10dp"
+                android:textSize="12sp"
+                android:padding="10dp"
                 android:fontFamily="@font/bungee"
                 android:background="@color/colorPrimary"
                 android:textColor="@color/textSecondary"
@@ -112,6 +128,7 @@
                 android:id="@+id/clear_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:text="clear date"
                 android:layout_gravity="center"
                 android:fontFamily="@font/bangers"
@@ -134,7 +151,7 @@
                 android:layout_gravity="center"
                 android:buttonTint="@color/colorPrimary"
                 android:fontFamily="@font/bungee"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 />
 
             <com.google.android.material.textfield.TextInputLayout
@@ -158,14 +175,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="CREATE NEW TASK"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:fontFamily="@font/bungee"
                 android:background="@color/colorPrimary"
                 android:textColor="@color/textSecondary"
-                android:textSize="25sp"
+                android:textSize="13sp"
                 android:padding="15dp"
-                android:layout_marginEnd="15dp"
                 android:layout_marginVertical="25dp"
-                android:layout_marginStart="15dp"/>
+                android:layout_marginHorizontal="75dp"
+/>
 
         </LinearLayout>
 

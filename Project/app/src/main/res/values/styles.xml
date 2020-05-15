@@ -17,6 +17,7 @@
 
     </style>
 
+
     <style name="TextFIeld" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="fontFamily">@font/bangers</item>
         <item name="android:fontFamily">@font/bangers</item>

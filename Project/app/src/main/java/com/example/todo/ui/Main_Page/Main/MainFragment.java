@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +25,7 @@ import com.example.todo.R;
 import com.example.todo.ui.Main_Page.Main_page;
 
 import java.lang.reflect.Array;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 
@@ -32,6 +34,7 @@ public class MainFragment extends Fragment {
     private MainViewModel mainViewModel;
     SQLiteDatabase myDatabase;
     private ListView myListView;
+    LinearLayout layout;
     private ArrayList<Task> myTasks = new ArrayList<Task>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -42,6 +45,8 @@ public class MainFragment extends Fragment {
 
         //get username from parent and set it to viewmodel
 
+        layout = root.findViewById(R.id.tasksNone);
+
         String _username = ((Main_page) getActivity()).getUsername();
         mainViewModel.setUsername(_username);
 
@@ -51,7 +56,11 @@ public class MainFragment extends Fragment {
 
         myListView = root.findViewById(R.id.tasksList);
 
-        mainViewModel.setTasks();
+        try {
+            mainViewModel.setTasks();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         final Button newTaskButton = root.findViewById(R.id.buttonNewTask);
 
         newTaskButton.setOnClickListener(new View.OnClickListener() {
@@ -79,6 +88,13 @@ public class MainFragment extends Fragment {
         AdapterTasks adapterTasks;
 
         //TODO if msg is to make it red make it red lol
+        int count = myTasks.size();
+
+        if(count == 0){
+            layout.setVisibility(View.VISIBLE);
+        } else
+            layout.setVisibility(View.GONE);
+
 
         adapterTasks = new AdapterTasks(getActivity(), 0, myTasks);
         myListView.setAdapter(adapterTasks);
@@ -87,7 +103,6 @@ public class MainFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ((Main_page)getActivity()).showTaskActivity(myTasks.get(position).getID(), myTasks.get(position).getTitle());
-                 Toast.makeText(getActivity(), myTasks.get(position).getTitle(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -97,6 +112,10 @@ public class MainFragment extends Fragment {
     public void onResume() {
         super.onResume();
         myTasks.clear();
-        mainViewModel.setTasks();
+        try {
+            mainViewModel.setTasks();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 }

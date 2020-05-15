@@ -24,9 +24,8 @@ public class showTaskActivity extends AppCompatActivity {
     private String title;
     private String username;
 
-    Button goBack, taskCompleted, taskDelete;
-    ImageView settings;
-    TextView titleView, dateTime, description, alarmed;
+    Button goBack, taskCompleted, taskDelete ,settings;
+    TextView titleView, date, Time, description, alarmed;
     String tasksTable;
     SQLiteDatabase myDatabase;
 
@@ -51,7 +50,8 @@ public class showTaskActivity extends AppCompatActivity {
         taskDelete = findViewById(R.id.taskDelete);
         settings = findViewById(R.id.settingsTasks);
         titleView = findViewById(R.id.taskTitle);
-        dateTime = findViewById(R.id.taskDateTime);
+        date = findViewById(R.id.taskDate);
+        Time = findViewById(R.id.taskTime);
         description = findViewById(R.id.taskDescription);
         //alarmed = findViewById(R.id.taskReminded);
 
@@ -62,8 +62,9 @@ public class showTaskActivity extends AppCompatActivity {
         if(cursor.getCount() > 0){
             cursor.moveToFirst();
             if(cursor.getString(cursor.getColumnIndex("date")) != null){
-                String date = cursor.getString(cursor.getColumnIndex("date")) + cursor.getString(cursor.getColumnIndex("time"));
-                dateTime.setText(date);
+                date.setText(cursor.getString(cursor.getColumnIndex("date")));
+                String[] time = cursor.getString(cursor.getColumnIndex("time")).split("/");
+                Time.setText(time[0] + " : " + time[1]);
             }
             if(cursor.getString(cursor.getColumnIndex("description")) != null)
             {

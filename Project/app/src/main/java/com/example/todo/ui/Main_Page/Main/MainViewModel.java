@@ -1,5 +1,6 @@
 package com.example.todo.ui.Main_Page.Main;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -15,7 +16,14 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import java.lang.reflect.Array;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+
+import static java.lang.Integer.parseInt;
 
 public class MainViewModel extends ViewModel {
 
@@ -37,7 +45,12 @@ public class MainViewModel extends ViewModel {
         this._username = username;
     }
 
-    void setTasks(){
+    void setTasks() throws ParseException {
+
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat format = new SimpleDateFormat("d/MM/yyyy");
+        String nowDate = format.format(new Date());
+
+        Date now = format.parse(nowDate);
 
         myTasks.clear();
         String tasksTable = "tasks"+_username;
@@ -49,13 +62,38 @@ public class MainViewModel extends ViewModel {
                     cursor.moveToFirst();
                     for(int i = 1; i <= cursor.getCount() ; i++)
                     {
-                        myTasks.add(new Task(cursor.getInt(cursor.getColumnIndex("task_ID")), cursor.getString(cursor.getColumnIndex("title"))) );
-                        //TODO: check if date is past if is then send a message to make background..red?
+                        boolean past = false;
+
+                        // I dont know what those lines of code are doing.
+                        if(cursor.getString(cursor.getColumnIndex("date")) != null){
+                            Date toCompare = format.parse(cursor.getString(cursor.getColumnIndex("date")));
+
+                            if(now.compareTo(toCompare) > 0){
+                                past = true;
+
+                            } else if (now.compareTo(toCompare) == 0){
+                                // 0 -> hour, 1 -> minutes of time set in db;
+                                String[] timeToCompare = cursor.getString(cursor.getColumnIndex("time")).split("/");
+                                Calendar calendar = Calendar.getInstance();
+                                @SuppressLint("SimpleDateFormat") SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
+                                // 0 -> hour, 1 -> minutes of time right now;
+                                String[] time_now = formatter.format(calendar.getTime()).split(":");
+
+                                if(parseInt(time_now[0]) > parseInt(timeToCompare[0])){
+                                    past = true;
+                                } else if (parseInt(time_now[0]) == parseInt(timeToCompare[0])){
+                                    if(parseInt(time_now[1]) >= parseInt(timeToCompare[1]))
+                                        past = true;
+                                }
+                            }
+                        }
+
+                        myTasks.add(new Task(cursor.getInt(cursor.getColumnIndex("task_ID")), cursor.getString(cursor.getColumnIndex("title")), past) );
                         cursor.moveToNext();
                     }
                     myTasksLive.setValue(myTasks);
                 }
-                if(cursor.getCount() == 0){
+                else if(cursor.getCount() == 0){
                     myTasksLive.setValue(myTasks);
                 }
             }
