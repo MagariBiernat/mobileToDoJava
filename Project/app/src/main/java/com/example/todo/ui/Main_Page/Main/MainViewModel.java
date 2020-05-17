@@ -64,7 +64,7 @@ public class MainViewModel extends ViewModel {
                     {
                         boolean past = false;
 
-                        // I dont know what those lines of code are doing.
+                        // I don't know what those lines of code are doing but its working somehow
                         if(cursor.getString(cursor.getColumnIndex("date")) != null){
                             Date toCompare = format.parse(cursor.getString(cursor.getColumnIndex("date")));
 
@@ -72,6 +72,7 @@ public class MainViewModel extends ViewModel {
                                 past = true;
 
                             } else if (now.compareTo(toCompare) == 0){
+
                                 // 0 -> hour, 1 -> minutes of time set in db;
                                 String[] timeToCompare = cursor.getString(cursor.getColumnIndex("time")).split("/");
                                 Calendar calendar = Calendar.getInstance();
