@@ -2,13 +2,16 @@ package com.example.todo.ui.login;
 
 import android.app.Activity;
 import android.app.ActivityOptions;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
 
+import android.util.Log;
 import android.util.Pair;
 import android.view.KeyEvent;
 import android.view.View;
@@ -39,16 +42,25 @@ public class LoginActivity extends AppCompatActivity {
     CheckBox rememberMe;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        final SharedPreferences sharedPrefs = this.getSharedPreferences("LOGIN_CREDENTIALS",Context.MODE_PRIVATE);
+        final SharedPreferences.Editor editor = sharedPrefs.edit();
 
-        //TODO: check if shared preferences set (user clicked keep logged in checkbox)
-        // if yes move to main part of app.
-        // else stay
+        Log.i("siemano kolano login_Activity", sharedPrefs.getString("username", "default"));
+        final String usernameShared = sharedPrefs.getString("username", "");
+        boolean loggedIn = sharedPrefs.getBoolean("loggedin", false);
+
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        if(loggedIn){
+            if(!usernameShared.equals(""))
+                 moveToMainpage(usernameShared);
+        }
 //        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         //Hooks
@@ -69,6 +81,8 @@ public class LoginActivity extends AppCompatActivity {
 
         //editor for password field, closing soft keyboard
         password.setOnEditorActionListener(editorListener);
+
+
 
         okLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,6 +107,23 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        rememberMe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sharedPrefs.edit().putBoolean("loggedin", rememberMe.isChecked()).commit();
+                boolean rememberMeRightNow = sharedPrefs.getBoolean("loggedin", false);
+                Log.i("siemano teraz : ", String.valueOf(rememberMeRightNow));
+                Log.i("siemano teraz : ", usernameShared);
+            }
+        });
+
+    }
+
+    private void moveToMainpage(String _username){
+        Intent myIntent = new Intent(LoginActivity.this, Main_page.class);
+        myIntent.putExtra("USERNAME", _username);
+        startActivity(myIntent);
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
     private void login(final String _username, final String _password){
@@ -109,10 +140,11 @@ public class LoginActivity extends AppCompatActivity {
                         //if there are any rows received, move to first, and compare passwords.
                         final String pwd = cursor.getString(cursor.getColumnIndex("password"));
                         if(_password.equals(pwd)){
-                            Intent myIntent = new Intent(LoginActivity.this, Main_page.class);
-                            myIntent.putExtra("USERNAME", _username);
-                            startActivity(myIntent);
-                            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                            SharedPreferences sharedPrefs = this.getSharedPreferences("LOGIN_CREDENTIALS",Context.MODE_PRIVATE);
+
+                            sharedPrefs.edit().putString("username", _username).commit();
+
+                            moveToMainpage(_username);
                             cursor.close();
                         }
                         else{
@@ -174,7 +206,7 @@ public class LoginActivity extends AppCompatActivity {
     }
     @Override
     public void onBackPressed(){
-        finish();
+        finishAndRemoveTask();
         //TODO: add another activity with some kind of byebye logo \o\
     }
     protected void onResume() {

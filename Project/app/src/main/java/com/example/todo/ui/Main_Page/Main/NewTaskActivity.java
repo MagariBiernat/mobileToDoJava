@@ -122,10 +122,12 @@ public class NewTaskActivity extends AppCompatActivity implements DatePickerDial
                         String time = picker.getCurrentHour().toString() + "/" + picker.getCurrentMinute().toString();
                         values.put("time", time);
                     }
+
                     if(!description.getText().toString().equals(""))
                     {
                         values.put("description", description.getText().toString());
                     }
+
                     if(myDatabase.insert("tasks"+username, null, values) > -1)
                     {
                         //Log.i("Database", "it works :O");

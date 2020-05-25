@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -31,6 +32,7 @@ public class ProfileFragment extends Fragment {
         final TextView tasksSuccess = root.findViewById(R.id.tasksSuccessful);
         final TextView tasksFailed = root.findViewById(R.id.tasksFailed);
         final TextView tasksOnGoing = root.findViewById(R.id.tasksOnGoing);
+        final Button settings = root.findViewById(R.id.buttonSettings);
         final String username = ((Main_page)getActivity()).getUsername();
         myDatabase = ((Main_page)getActivity()).myDatabase;
         profileViewModel.setUsername(username);
@@ -38,6 +40,12 @@ public class ProfileFragment extends Fragment {
         usernameText.setText(username);
 
 
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((Main_page) getActivity()).showSettingsActivity();
+            }
+        });
 
         //observe for date created return
         profileViewModel.getDate().observe(getViewLifecycleOwner(), new Observer<String>() {
@@ -52,21 +60,21 @@ public class ProfileFragment extends Fragment {
         profileViewModel.getSuccess().observe(getViewLifecycleOwner(), new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
-                tasksSuccess.setText("Tasks Successful done : "+integer.toString());
+                tasksSuccess.setText(integer.toString());
             }
         });
 
         profileViewModel.getFailed().observe(getViewLifecycleOwner(), new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
-                tasksFailed.setText("Tasks failed : "+ integer.toString());
+                tasksFailed.setText(integer.toString());
             }
         });
 
         profileViewModel.getOnGoing().observe(getViewLifecycleOwner(), new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
-                tasksOnGoing.setText("Tasks On Going now : "+ integer.toString());
+                tasksOnGoing.setText(integer.toString());
             }
         });
 

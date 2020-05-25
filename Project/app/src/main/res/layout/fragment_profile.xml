@@ -7,6 +7,7 @@
     android:layout_height="match_parent">
 
     <ScrollView
+        android:id="@+id/scrollView4"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -15,73 +16,88 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Profile"
-                android:textAlignment="center"
-                android:textSize="31sp"
-                android:fontFamily="@font/bungee"
-                android:textColor="@color/textPrimary"
-                />
+                android:orientation="horizontal"
+                android:weightSum="3">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/bungee"
+                    android:text="Profile"
+                    android:textAlignment="center"
+                    android:textColor="@color/textPrimary"
+                    android:textSize="27sp" />
+
+                <ImageView
+                    android:layout_width="180dp"
+                    android:layout_height="180dp"
+                    android:layout_weight="2"
+                    android:src="@drawable/ic_undraw_profile" />
+
+            </LinearLayout>
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:layout_marginTop="23dp">
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="23dp"
+                android:orientation="horizontal">
+
                 <TextView
-                    android:layout_width="130dp"
-                    android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    android:textColor="@color/textPrimary"
-                    android:textAlignment="center"
-                    android:fontFamily="@font/bungee"
-                    android:text="Username"/>
-                <TextView
+                    android:id="@+id/username"
                     android:layout_width="wrap_content"
-                    android:minWidth="150dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/bungee"
+                    android:text="Username : "
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/hintPrimary"
+                    android:textSize="16sp" />
+
+                <TextView
                     android:id="@+id/userName"
-                    android:textColor="@color/colorPrimary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginHorizontal="5dp"
                     android:fontFamily="@font/bangers"
-                    android:textAlignment="center"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    android:textSize="25sp"
-                    />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:layout_marginTop="23dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    android:textColor="@color/textPrimary"
-                    android:textAlignment="center"
-                    android:fontFamily="@font/bungee"
-                    android:text="Date created"/>
-                <TextView
-                    android:layout_width="wrap_content"
-
+                    android:text="fghjfg"
+                    android:textAlignment="textStart"
                     android:textColor="@color/colorPrimary"
-                    android:id="@+id/date_created"
-                    android:layout_marginVertical="5dp"
-                    android:fontFamily="@font/bangers"
-                    android:textAlignment="center"
+                    android:textSize="19sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="23dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=""
-                    android:textSize="20sp"
-                    />
+                    android:fontFamily="@font/bungee"
+                    android:text="Date created : "
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/hintPrimary"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/date_created"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/bangers"
+                    android:text="dfghdfghd"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="19sp" />
 
 
             </LinearLayout>
@@ -89,57 +105,112 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="23dp"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/tasksSuccessful"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:id="@+id/tasksFailed"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/bungee"
+                        android:text="sucessful tasks : "
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/hintPrimary"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/tasksSuccessful"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/bangers"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="19sp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:id="@+id/tasksOnGoing"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="15dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/bungee"
+                        android:text="Failed tasks : "
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/hintPrimary"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/tasksFailed"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/bangers"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="19sp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/bungee"
+                        android:text="ongoing tasks : "
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/hintPrimary"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/tasksOnGoing"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/bangers"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="19sp" />
+
+
+                </LinearLayout>
+
 
             </LinearLayout>
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/buttonSETTINGS"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="SETTINGS"
-                android:drawableStart="@drawable/ic_cog"
-                android:textSize="23sp"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:fontFamily="@font/bungee"
-                android:drawablePadding="5dp"
-                android:background="@color/colorPrimary"
-                android:textColor="@color/textSecondary"
-                android:padding="18dp"
-                android:layout_marginTop="150dp"
-                android:layout_gravity="center"/>
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/buttonDELETE"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:text="DELETE ACCOUNT"
-                android:textSize="23sp"
-                android:textColor="@color/textSecondary"
-                android:fontFamily="@font/bungee"
-                android:backgroundTint="#ff0000"
-                android:padding="20dp"
-                android:layout_gravity="center"
-                android:layout_marginVertical="25dp"
-                />
-
-
 
 
         </LinearLayout>
     </ScrollView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="50dp"
+        android:paddingVertical="15dp"
+        android:layout_gravity="center"
+        android:layout_marginVertical="15dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:fontFamily="@font/bungee"
+        android:foreground="?android:attr/selectableItemBackground"
+
+        android:text="@string/Settings_title"
+        android:textColor="@color/textSecondary"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
