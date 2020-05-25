@@ -111,8 +111,6 @@ public class NewTaskActivity extends AppCompatActivity implements DatePickerDial
             public void onClick(View v) {
                 if(validationSuccess())
                 {
-                    //TODO: only title to validate????
-                    // on success close activity, on resume in main_page refresh listview
 
                     // prepare values to insert
                     ContentValues values = new ContentValues();
@@ -130,7 +128,6 @@ public class NewTaskActivity extends AppCompatActivity implements DatePickerDial
 
                     if(myDatabase.insert("tasks"+username, null, values) > -1)
                     {
-                        //Log.i("Database", "it works :O");
                         Integer count = getTasksOnGoing();
                         if(count > -1)
                         {
@@ -145,7 +142,6 @@ public class NewTaskActivity extends AppCompatActivity implements DatePickerDial
                     else
                         Log.i("Database", "nope");
                     myDatabase.close();
-                    //TODO BONUS: allow an image for insert
                 }
             }
         });

@@ -117,12 +117,20 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void ChangeTablesName(String oldUsername, String newUsername){
+
         String oldNotes = "notes"+oldUsername;
         String oldTasks = "tasks"+oldUsername;
         String newNotes = "notes"+newUsername;
         String newTasks = "tasks"+newUsername;
+        //
         myDatabase.execSQL("ALTER TABLE "+oldNotes+" RENAME TO "+newNotes);
         myDatabase.execSQL("ALTER TABLE "+oldTasks+" RENAME TO "+newTasks);
+
+        //TODO: dont change sharef prefs just change username globally//set sp everywhere
+        //change sharedprefs
+        SharedPreferences sharedPrefs = this.getSharedPreferences("LOGIN_CREDENTIALS",Context.MODE_PRIVATE);
+        sharedPrefs.edit().remove("username").commit();
+        sharedPrefs.edit().remove("loggedin").commit();
 
     }
 

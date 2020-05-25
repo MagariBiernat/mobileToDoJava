@@ -120,13 +120,6 @@ public class Main_page extends AppCompatActivity {
 
             sharedPrefs.edit().remove("username").commit();
             sharedPrefs.edit().remove("loggedin").commit();
-
-
-//        editor.putBoolean("loggedin", false);
-//        Log.i("siemano kolano main_page", sharedPrefs.getString("username", "default"));
-//        editor.putString("username", "");
-//        editor.commit();
-//        Log.i("siemano kolano main_page_After commit", sharedPrefs.getString("username", "default"));
     }
 
     public String getUsername(){return username;}

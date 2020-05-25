@@ -42,7 +42,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     // SQL Create table
-    private static String tableUsers = "CREATE TABLE IF NOT EXISTS users ( " +
+    public static String tableUsers = "CREATE TABLE IF NOT EXISTS users ( " +
             " user_ID INTEGER PRIMARY KEY, " +
             " username VARCHAR NOT NULL, " +
             " password VARCHAR NOT NULL, " +

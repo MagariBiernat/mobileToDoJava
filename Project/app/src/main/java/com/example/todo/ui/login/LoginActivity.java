@@ -38,9 +38,9 @@ public class LoginActivity extends AppCompatActivity {
     TextView helloThere, logInToContinue;
     ImageView image;
     TextInputEditText username, password;
-    Button forgetPassword, okLogIn, newSignUp;
+    Button  okLogIn, newSignUp;
     CheckBox rememberMe;
-
+    SQLiteDatabase myDatabase;
 
 
     @Override
@@ -63,6 +63,13 @@ public class LoginActivity extends AppCompatActivity {
         }
 //        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        //db
+        myDatabase = this.openOrCreateDatabase("Users", MODE_PRIVATE, null);
+
+        // create table 'users' if does not exist.
+        myDatabase.execSQL(RegisterActivity.tableUsers);
+
+
         //Hooks
 
         //Image and ViewTexts
@@ -73,7 +80,6 @@ public class LoginActivity extends AppCompatActivity {
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
         // Buttons
-        forgetPassword = findViewById(R.id.forgetButton);
         okLogIn = findViewById(R.id.login_loginbutton);
         newSignUp = findViewById(R.id.login_signupbutton);
         // CheckBox
@@ -112,8 +118,6 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 sharedPrefs.edit().putBoolean("loggedin", rememberMe.isChecked()).commit();
                 boolean rememberMeRightNow = sharedPrefs.getBoolean("loggedin", false);
-                Log.i("siemano teraz : ", String.valueOf(rememberMeRightNow));
-                Log.i("siemano teraz : ", usernameShared);
             }
         });
 
@@ -128,8 +132,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private void login(final String _username, final String _password){
 
-        // open Database
-        SQLiteDatabase myDatabase = this.openOrCreateDatabase("Users", MODE_PRIVATE, null);
 
         // query looking for any rows with user's username
         // try checks if the table 'users' exists
