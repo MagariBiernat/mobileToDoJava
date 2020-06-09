@@ -51,8 +51,6 @@ public class Main_page extends AppCompatActivity {
 
         sharedPrefs = this.getSharedPreferences("LOGIN_CREDENTIALS",Context.MODE_PRIVATE);
 
-        String shit = sharedPrefs.getString("username", "DEFAULT-NOT-WORKING");
-        Log.i("siemano wejscie main-page", shit);
 //        editor = sharedPrefs.edit();
 
         super.onCreate(savedInstanceState);

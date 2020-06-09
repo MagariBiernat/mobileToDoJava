@@ -72,7 +72,6 @@ public class SettingsActivity extends AppCompatActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(SettingsActivity.this);
                 builder.setCancelable(true);
                 builder.setTitle("Log out");
-                Log.i("siemano kolano settings", sharedPrefs.getString("username", "default"));
                 builder.setMessage("Are You sure You want to log out ?!");
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
@@ -92,7 +91,6 @@ public class SettingsActivity extends AppCompatActivity {
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Log.i("siemano kolano settings", "asdfasd");
                         dialog.cancel();
                     }
                 });
